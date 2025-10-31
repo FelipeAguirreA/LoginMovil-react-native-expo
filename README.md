@@ -1,5 +1,5 @@
 ﻿
-# Felipe Aguirre — App de evaluación (React Native, Expo + TypeScript)
+# App de evaluación (React Native, Expo + TypeScript)
 
 Esta es una pequeña aplicación React Native. Está pensada para ser clara y demostrativa: un flujo de login sencillo, navegación por pestañas con Expo Router y ejemplos de uso de hooks y tipado en TypeScript.
 

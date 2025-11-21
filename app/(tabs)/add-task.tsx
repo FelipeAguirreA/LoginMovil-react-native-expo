@@ -4,7 +4,7 @@ import { Task } from "@/constants/types";
 import { loadTodosFromStorage, saveTodosToStorage } from "@/utils/storage";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
-import { router } from "expo-router";
+import { router, useFocusEffect } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -16,6 +16,14 @@ export default function AddTaskScreen() {
   const [title, setTitle] = useState("");
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
+
+  useFocusEffect(
+  useCallback(() => {
+    // Resetear los campos cada vez que entras al formulario
+    setTitle("");
+    setPhotoUri(null);
+  }, [])
+);
 
   useEffect(() => {
     const load = async () => {

@@ -1,66 +1,59 @@
-﻿
-# App de evaluación (React Native, Expo + TypeScript)
+﻿# App de evaluación (React Native, Expo + TypeScript)
 
-Esta es una pequeña aplicación React Native. Está pensada para ser clara y demostrativa: un flujo de login sencillo, navegación por pestañas con Expo Router y ejemplos de uso de hooks y tipado en TypeScript.
+Aplicación pequeña que combina un login ligero con una lista de tareas asociada a cada usuario. Las tareas requieren título, foto y ubicación, y se guardan localmente para que se muestren únicamente al usuario que las creó.
 
 ## Requisitos
 
 - Node >= 16
 - npm
-- Expo (no es obligatorio instalar globalmente; se puede usar con npx)
+- Expo (se puede usar con `npx`, no hace falta instalación global)
 
 ## Instalación
 
-Desde la carpeta del proyecto ejecuta en la consola:
+Desde la carpeta del proyecto ejecuta:
 
+```
 npm install
+```
 
 ## Ejecutar en desarrollo
 
+```
 npx expo start
+```
 
-Abre el emulador Android Studio si lo quieres probar directamente desde tu computadora o la app Expo Go en tu dispositivo movil y escanea el QR.
+Abre el emulador o la app Expo Go para probar la aplicación.
 
 ## Qué incluye la app
 
-- Pantalla de Login (`app/index.tsx`) con campos Email y Password (secureTextEntry).
-- Validación simple: la contraseña esperada para la demo es `1234`. Si no coincide, se muestra "Contraseña incorrecta".
-- Validación simple de correo electronico esperado: `felipe@gmail.com`.
-- Navegación con Expo Router; al iniciar sesión de forma satisfactoria se vera un layout con pestañas (Tabs):
-  - Home (`app/(tabs)/index.tsx`) — pantalla de bienvenida.
-  - Perfil (`app/(tabs)/perfil.tsx`) — muestra el email que ingresaste en el login `felipe@gmail.com` (se puede definir otro si es necesario para pruebas).
-- Ejemplos de uso de hooks (`useState`, `useEffect`) y tipado básico en TypeScript.
+- Login con validación sobre dos usuarios permitidos (`user1@example.com`, `user2@example.com`, contraseña `1234`).
+- Persistencia de sesión en `AsyncStorage` para conservar el estado entre reinicios.
+- Lista de tareas (`app/home.tsx`) asociada al usuario autenticado; cada tarea requiere título, toma de foto (expo-image-picker) y ubicación actual (expo-location).
+- Funcionalidades para marcar tareas como completadas, eliminarlas y navegar de vuelta al login con un botón de cerrar sesión.
 
 ## Cómo probar (casos clave)
 
-1. Abre la app.
-2. En la pantalla de Login prueba lo siguiente:
-   - Dejar el email vacío o inválido y pulsar "Iniciar sesión" → verás "Ingresa un email válido".
-   - Poner un email válido y una contraseña distinta de `1234` → verás "Contraseña incorrecta".
-   - Poner contraseña `1234` + el correo establecido de ejemplo `felipe@gmail.com` → navegarás a la vista con Tabs; en "Perfil" verás el email ingresado.
+1. Abre la app y autentícate con uno de los usuarios válidos (`user1@example.com` o `user2@example.com`, contraseña `1234`).
+2. En la pantalla de tareas completa el formulario: agrega un título, selecciona una imagen y permite el acceso a la ubicación.
+3. Confirma que la nueva tarea aparece con su foto y coordenadas; alterna su estado entre completada/pendiente y elimina alguna para validar el borrado.
+4. Cierra sesión y vuelve a iniciar con el mismo usuario; las tareas deben permanecer gracias a AsyncStorage.
 
 ## Estructura relevante
 
-- `app/index.tsx` — Login
-- `app/(tabs)/_layout.tsx` — define las Tabs con `expo-router`
-- `app/(tabs)/index.tsx` — Home
-- `app/(tabs)/perfil.tsx` — Perfil (muestra email)
+- `app/index.tsx` — Login y lógica de redirección.
+- `app/home.tsx` — Lista de tareas con creación, marcado, eliminación y logout.
+- `components/context/auth-context.tsx` — Controla el estado del usuario y mantiene la sesión usando AsyncStorage.
+- `constants/types.ts` — Tipos `User`, `Task` y la ubicación de la tarea.
+- `utils/storage.ts` — Helpers para guardar/cargar tareas y sesión del usuario.
 
-## Stack y componentes principales
+## Dependencias clave
 
-- Plataforma: React Native (Expo).
-- Lenguaje: TypeScript.
-- Navegación: Expo Router (file-based routing).
-- Componentes nativos usados (ejemplos): `View`, `Text`, `TextInput`, `SafeAreaView`, `TouchableOpacity` / `Pressable`, `Button`, `Image`.
-- Hooks principales: `useState`, `useEffect`.
-- Estilos: `StyleSheet` y componentes temáticos bajo `components/` (p. ej. `themed-view.tsx`, `themed-text.tsx`).
+- `@react-native-async-storage/async-storage` — Persistencia local de tareas y sesión.
+- `expo-image-picker` — Selección de fotos desde la galería.
+- `expo-location` — Captura las coordenadas al crear una tarea.
 
-## Demo (video)
+## Notas
 
-A continuación está el video demo que muestra el flujo de la app: validaciones de login (error y éxito), la navegación por Tabs y la vista Perfil mostrando el email.
+- Al ejecutar `npm run lint` se validan las reglas recomendadas por Expo.
+- La navegación está construida con Expo Router (un stack con login y home, sin pestañas).
 
-- Video demo: https://ipciisa-my.sharepoint.com/:v:/g/personal/felipe_aguirre_aravena_estudiante_ipss_cl/EcrVoKFd4xVJsdW9U6B8dQ4Bx-OSdKMSVde0LJLdvByEKQ
-
-## Notas 
-
-Me apoyé con Copilot (By Coding) para acelerar partes del desarrollo.

@@ -9,7 +9,10 @@
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
     "ios": {
-      "supportsTablet": true
+      "infoPlist": {
+      "NSCameraUsageDescription": "Esta aplicación necesita acceso a la cámara para tomar fotos.",
+      "NSPhotoLibraryUsageDescription": "Esta aplicación necesita acceso a la biblioteca de fotos para seleccionar imágenes.",
+      "NSLocationWhenInUseUsageDescription": "Esta aplicación necesita acceso a su ubicación mientras la usaar fotos."
     },
     "android": {
       "adaptiveIcon": {
@@ -45,4 +48,5 @@
       "reactCompiler": true
     }
   }
+}
 }

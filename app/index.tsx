@@ -1,15 +1,8 @@
-// app/index.tsx
+import Button from "@/components/ui/button";
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
-import {
-  Alert,
-  Button,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { Alert, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
 import { useAuth } from "../components/context/auth-context";
 
 export default function LoginScreen() {
@@ -32,7 +25,10 @@ export default function LoginScreen() {
   return (
     <ScrollView contentContainerStyle={styles.wrapper} keyboardShouldPersistTaps="handled">
       <View style={styles.container}>
-        <Text style={styles.heading}>Bienvenido de nuevo</Text>
+
+         <Ionicons name="book-outline" size={28} color="#1d4ed8" style={styles.icon} />
+        
+        <Text style={styles.heading}>Bienvenido</Text>
 
         <View style={styles.form}>
           <Text style={styles.label}>Email</Text>
@@ -54,9 +50,7 @@ export default function LoginScreen() {
             secureTextEntry
           />
 
-          <View style={styles.buttonContainer}>
-            <Button title="Iniciar sesión" onPress={handleLogin} />
-          </View>
+          <Button text="Iniciar sesión" type= "login" onPress={handleLogin}/>
         </View>
       </View>
     </ScrollView>
@@ -106,5 +100,9 @@ const styles = StyleSheet.create({
   },
   buttonContainer: {
     marginTop: 8,
+  },
+  icon: {
+    textAlign: "center",
+    maxHeight: 200
   },
 });

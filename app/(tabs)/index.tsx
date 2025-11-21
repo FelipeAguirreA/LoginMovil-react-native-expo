@@ -3,12 +3,10 @@ import { Header } from "@/components/ui/header";
 import { Task } from "@/constants/types";
 import { loadTodosFromStorage, saveTodosToStorage } from "@/utils/storage";
 import { useFocusEffect } from "@react-navigation/native";
-import { router } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
-import { StyleSheet, Text } from "react-native";
+import { StyleSheet } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAuth } from "../components/context/auth-context";
-import Button from "../components/ui/button";
+import { useAuth } from "../../components/context/auth-context";
 
 export default function HomeScreen() {
   const { user } = useAuth();
@@ -64,16 +62,6 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.container}>
       <Header title={`Biblioteca de ${user?.name}`} />
-
-      <Button
-        text="Agregar libro"
-        type="primary"
-        onPress={() => router.push("/add-task")}
-      />
-
-      <Text style={{ textAlign: "center", fontSize: 26, fontWeight: "700", marginBottom: 12, color: "#374151", marginTop: 22 }}>
-        Libros
-      </Text>
 
       <TaskList
         tasks={tasks}

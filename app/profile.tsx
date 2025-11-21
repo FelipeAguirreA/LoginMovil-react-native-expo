@@ -1,6 +1,7 @@
+import Button from "@/components/ui/button";
 import { useRouter } from "expo-router";
 import React from "react";
-import { Button, StyleSheet, Text, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { useAuth } from "../components/context/auth-context";
 
 const displayNames: Record<string, string> = {
@@ -9,8 +10,9 @@ const displayNames: Record<string, string> = {
 };
 
 export default function ProfileScreen() {
+  const { user, signOut } = useAuth();
+
   const router = useRouter();
-  const { user } = useAuth();
 
   if (!user) {
     return null;
@@ -22,14 +24,24 @@ export default function ProfileScreen() {
     <View style={styles.container}>
       <Text style={styles.heading}>Perfil del usuario</Text>
       <View style={styles.card}>
+        <View style={styles.avatarContainer}>
+          <View style={styles.avatar}>
+            <Text style={styles.avatarText}>
+              {displayName.charAt(0)}
+            </Text>
+          </View>
+        </View>
+
         <Text style={styles.label}>Nombre</Text>
         <Text style={styles.value}>{displayName}</Text>
         <Text style={styles.label}>Email</Text>
         <Text style={styles.value}>{user.email}</Text>
       </View>
-      <View style={styles.buttonRow}>
-        <Button title="Volver" onPress={() => router.push("/home")} />
-      </View>
+
+      <Button text="Volver" type="primary" onPress={() => router.back()} />
+      <View style={{ marginTop: 12 }} />
+      <Button text="Cerrar sesión" type="danger" onPress={signOut} />
+
     </View>
   );
 }
@@ -42,36 +54,63 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   heading: {
-    fontSize: 24,
+    fontSize: 26,
     fontWeight: "700",
-    marginBottom: 24,
+    marginBottom: 32,
     color: "#111827",
     textAlign: "center",
   },
-  card: {
-    backgroundColor: "#fff",
-    borderRadius: 16,
-    padding: 24,
-    marginBottom: 32,
+
+  avatarContainer: {
+    alignItems: "center",
+    marginBottom: 24,
+  },
+  avatar: {
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    backgroundColor: "#3da1ffff",
+    justifyContent: "center",
+    alignItems: "center",
     shadowColor: "#000",
-    shadowOpacity: 0.04,
+    shadowOpacity: 0.15,
     shadowOffset: { width: 0, height: 4 },
     shadowRadius: 10,
-    elevation: 3,
   },
+  avatarText: {
+    color: "#fff",
+    fontSize: 42,
+    fontWeight: "700",
+  },
+
+  card: {
+    backgroundColor: "#fff",
+    borderRadius: 20,
+    padding: 28,
+    marginBottom: 24,
+    shadowColor: "#000",
+    shadowOpacity: 0.05,
+    shadowOffset: { width: 0, height: 6 },
+    shadowRadius: 14,
+    elevation: 5,
+  },
+
   label: {
-    fontSize: 12,
+    fontSize: 13,
     fontWeight: "600",
     color: "#6b7280",
-    marginTop: 12,
+    marginTop: 16,
+    marginBottom: 2,
   },
+
   value: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: "600",
     color: "#111827",
-    marginTop: 4,
   },
+
   buttonRow: {
+    marginTop: 8,
     alignItems: "center",
   },
 });

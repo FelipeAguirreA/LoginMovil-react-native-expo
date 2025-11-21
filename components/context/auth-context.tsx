@@ -30,8 +30,8 @@ export function AuthProvider({ children }: PropsWithChildren) {
 
   const signIn = (email: string, password: string): AuthResult => {
     const validUsers = [
-      { email: "user1@example.com", password: "1234" },
-      { email: "user2@example.com", password: "1234" },
+      { email: "user1@example.com", password: "1234", name: "Alejandro Vargas" },
+      { email: "user2@example.com", password: "1234", name: "Camila Herrera"  },
     ];
 
     const foundUser = validUsers.find(
@@ -42,7 +42,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
       return { success: false, error: "Email o contraseña incorrectos" };
     }
 
-    const authenticatedUser = { email: foundUser.email };
+    const authenticatedUser = { email: foundUser.email, name: foundUser.name };
     setUser(authenticatedUser);
     saveSessionToStorage(authenticatedUser).catch((error) => {
       console.error('No se pudo guardar la sesión:', error);

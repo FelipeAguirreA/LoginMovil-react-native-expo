@@ -8,7 +8,7 @@ import { router } from "expo-router";
 import React, { useCallback, useEffect, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { useAuth } from "../components/context/auth-context";
+import { useAuth } from "../../components/context/auth-context";
 
 export default function AddTaskScreen() {
   const { user } = useAuth();
@@ -91,7 +91,7 @@ export default function AddTaskScreen() {
       await persistTasks(updated);
 
       Alert.alert("Éxito", "Libro agregado correctamente.");
-      router.back();
+      router.replace("/(tabs)/");
     } catch (error) {
       console.error(error);
       Alert.alert("Error", "No pudimos guardar el libro.");
@@ -115,7 +115,7 @@ export default function AddTaskScreen() {
         />
       </View>
 
-      <Button text="Volver" onPress={() => router.back()} />
+      <Button text="Volver" onPress={() => router.replace("/(tabs)/")} />
     </SafeAreaView>
   );
 }

@@ -1,7 +1,6 @@
 import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import Button from "./button";
 
 interface HeaderProps {
     title: string;
@@ -15,7 +14,6 @@ export function Header({
     return (
         <View>
             <Text style={styles.heading}>{title}</Text>
-            <Button text="Perfil" type="login" onPress={() => router.push("/profile")}  />
         </View>
     );
 }

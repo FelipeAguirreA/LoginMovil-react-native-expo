@@ -1,8 +1,8 @@
+import { useAuth } from "@/components/context/auth-context";
 import Button from "@/components/ui/button";
 import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import { useAuth } from "../components/context/auth-context";
 
 const displayNames: Record<string, string> = {
   "user1@example.com": "Alejandro Vargas",
@@ -38,7 +38,6 @@ export default function ProfileScreen() {
         <Text style={styles.value}>{user.email}</Text>
       </View>
 
-      <Button text="Volver" type="primary" onPress={() => router.back()} />
       <View style={{ marginTop: 12 }} />
       <Button text="Cerrar sesión" type="danger" onPress={signOut} />
 

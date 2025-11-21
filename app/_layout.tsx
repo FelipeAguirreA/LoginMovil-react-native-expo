@@ -1,6 +1,5 @@
-// app/_layout.tsx
 import { Stack, usePathname, useRouter } from "expo-router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import { AuthProvider, useAuth } from "../components/context/auth-context";
 
 function RootLayoutNav() {
@@ -9,26 +8,21 @@ function RootLayoutNav() {
   const pathname = usePathname() ?? "/";
 
   useEffect(() => {
-    const isOnLogin = pathname === "/";
+    const isOnLogin = pathname === "/login" || pathname === "/";
 
     if (!user && !isOnLogin) {
-      router.replace("/");
+      router.replace("/login");
     } else if (user && isOnLogin) {
-      router.replace("/home");
+      router.replace("/(tabs)");
     }
-  }, [user, pathname, router]);
+  }, [user, pathname]);
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
-      <Stack.Screen name="index" options={{ title: "Login" }} />
-      <Stack.Screen name="home" />
-      <Stack.Screen
-        name="modal"
-        options={{
-          presentation: "modal",
-          title: "Modal",
-        }}
-      />
+      <Stack.Screen name="(tabs)" />
+      <Stack.Screen name="login" />
+      <Stack.Screen name="book" />
+      <Stack.Screen name="add-task" />
     </Stack>
   );
 }

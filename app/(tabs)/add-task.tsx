@@ -53,13 +53,22 @@ export default function AddTaskScreen() {
     setIsSaving(true);
 
     try {
-      const { status } = await Location.requestForegroundPermissionsAsync();
-      if (status !== Location.PermissionStatus.GRANTED) {
+      const { status: existingStatus } = await Location.getForegroundPermissionsAsync();
+      let finalStatus = existingStatus;
+
+      if (existingStatus !== Location.PermissionStatus.GRANTED) {
+        const { status } = await Location.requestForegroundPermissionsAsync();
+        finalStatus = status;
+      }
+
+      if (finalStatus !== Location.PermissionStatus.GRANTED) {
         Alert.alert("Permiso", "Activa la ubicación para registrar la tarea.");
         return;
       }
 
-      const coordinates = await Location.getCurrentPositionAsync({});
+      const coordinates = await Location.getCurrentPositionAsync({
+        accuracy: Location.Accuracy.High,
+      });
 
       const newTask: Task = {
         id: `${Date.now()}`,

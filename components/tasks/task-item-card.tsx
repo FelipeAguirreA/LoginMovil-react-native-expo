@@ -16,7 +16,6 @@ export function TaskItemCard({ item, onToggle, onDelete }: TaskItemCardProps) {
       style={[
         styles.taskCard,
         item.completed && styles.bookReadBorder
-        // item.completed && styles.bookReadBackground
       ]}
     >
       <Text
@@ -89,7 +88,4 @@ const styles = StyleSheet.create({
   bookReadBorder: {
   borderColor: "#16a34a",
 },
-  /* bookReadBackground: {
-    backgroundColor: "#def8e7ff",
-  }, */
 })

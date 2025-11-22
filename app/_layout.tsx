@@ -15,14 +15,12 @@ function RootLayoutNav() {
     } else if (user && isOnLogin) {
       router.replace("/(tabs)");
     }
-  }, [user, pathname]);
+  }, [user, pathname, router]);
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
       <Stack.Screen name="(tabs)" />
       <Stack.Screen name="login" />
-      <Stack.Screen name="book" />
-      <Stack.Screen name="add-task" />
     </Stack>
   );
 }

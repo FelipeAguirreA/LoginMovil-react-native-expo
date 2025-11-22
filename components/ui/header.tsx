@@ -1,4 +1,3 @@
-import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -9,7 +8,6 @@ interface HeaderProps {
 export function Header({
     title,
 }: HeaderProps) {
-      const router = useRouter();
     
     return (
         <View>

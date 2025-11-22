@@ -24,6 +24,7 @@ export function TaskForm({
       <TextInput
         style={styles.input}
         placeholder="Título del libro"
+        placeholderTextColor="#6b7280"
         value={title}
         onChangeText={setTitle}
       />
@@ -72,6 +73,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: 14,
     marginBottom: 12,
     backgroundColor: "#fff",
+    color: "#1f2937",
   },
   photoPicker: {
     borderWidth: 1,

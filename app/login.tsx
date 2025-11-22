@@ -3,6 +3,7 @@ import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from "expo-router";
 import React, { useState } from "react";
 import { Alert, ScrollView, StyleSheet, Text, TextInput, View } from "react-native";
+import Animated, { FadeInDown, FadeInUp } from 'react-native-reanimated';
 import { useAuth } from "../components/context/auth-context";
 
 export default function LoginScreen() {
@@ -26,11 +27,15 @@ export default function LoginScreen() {
     <ScrollView contentContainerStyle={styles.wrapper} keyboardShouldPersistTaps="handled">
       <View style={styles.container}>
 
-         <Ionicons name="book-outline" size={28} color="#1d4ed8" style={styles.icon} />
+        <Animated.View entering={FadeInUp.delay(200).duration(1000).springify()} style={{ alignItems: 'center' }}>
+           <Ionicons name="book-outline" size={60} color="#1d4ed8" style={styles.icon} />
+        </Animated.View>
         
-        <Text style={styles.heading}>Bienvenido</Text>
+        <Animated.Text entering={FadeInUp.delay(400).duration(1000).springify()} style={styles.heading}>
+          Bienvenido
+        </Animated.Text>
 
-        <View style={styles.form}>
+        <Animated.View entering={FadeInDown.delay(600).duration(1000).springify()} style={styles.form}>
           <Text style={styles.label}>Email</Text>
           <TextInput
             style={styles.input}
@@ -39,6 +44,7 @@ export default function LoginScreen() {
             keyboardType="email-address"
             autoCapitalize="none"
             placeholder="user1@example.com"
+            placeholderTextColor="#9CA3AF"
           />
 
           <Text style={styles.label}>Contraseña</Text>
@@ -48,10 +54,11 @@ export default function LoginScreen() {
             onChangeText={setPassword}
             placeholder="1234"
             secureTextEntry
+            placeholderTextColor="#9CA3AF"
           />
 
           <Button text="Iniciar sesión" type= "login" onPress={handleLogin}/>
-        </View>
+        </Animated.View>
       </View>
     </ScrollView>
   );
@@ -97,6 +104,7 @@ const styles = StyleSheet.create({
     paddingVertical: 12,
     paddingHorizontal: 14,
     marginBottom: 16,
+    color: "#1f2937",
   },
   buttonContainer: {
     marginTop: 8,

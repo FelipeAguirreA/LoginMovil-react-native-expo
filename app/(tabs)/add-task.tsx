@@ -5,44 +5,25 @@ import { loadTodosFromStorage, saveTodosToStorage } from "@/utils/storage";
 import * as ImagePicker from "expo-image-picker";
 import * as Location from "expo-location";
 import { router, useFocusEffect } from "expo-router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { Alert, StyleSheet, Text, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuth } from "../../components/context/auth-context";
 
 export default function AddTaskScreen() {
   const { user } = useAuth();
-  const [tasks, setTasks] = useState<Task[]>([]);
   const [title, setTitle] = useState("");
   const [photoUri, setPhotoUri] = useState<string | null>(null);
   const [isSaving, setIsSaving] = useState(false);
 
   useFocusEffect(
   useCallback(() => {
-    // Resetear los campos cada vez que entras al formulario
+    // Resetear los campos cada vez que se entra al formulario
     setTitle("");
     setPhotoUri(null);
   }, [])
 );
 
-  useEffect(() => {
-    const load = async () => {
-      if (!user) return;
-      const stored = await loadTodosFromStorage();
-      setTasks(stored.filter((t) => t.userEmail === user.email));
-    };
-    load();
-  }, [user]);
-
-  const persistTasks = useCallback(
-    async (updatedTasks: Task[]) => {
-      if (!user) return;
-      const storedTodos = await loadTodosFromStorage();
-      const otherUsers = storedTodos.filter((t) => t.userEmail !== user.email);
-      await saveTodosToStorage([...otherUsers, ...updatedTasks]);
-    },
-    [user]
-  );
 
   const handleTakePhoto = useCallback(async () => {
     const permission = await ImagePicker.requestCameraPermissionsAsync();
@@ -93,11 +74,12 @@ export default function AddTaskScreen() {
         createdAt: new Date().toISOString(),
       };
 
-      const updated = [newTask, ...tasks];
-      setTasks(updated);
-
-      await persistTasks(updated);
-
+      // Cargar tareas actuales del storage para asegurar que tenemos el estado más reciente
+      const storedTodos = await loadTodosFromStorage();
+      const updatedTodos = [newTask, ...storedTodos];
+      
+      await saveTodosToStorage(updatedTodos);
+      
       Alert.alert("Éxito", "Libro agregado correctamente.");
       router.replace("/(tabs)/");
     } catch (error) {

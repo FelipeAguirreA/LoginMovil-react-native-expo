@@ -1,6 +1,5 @@
 import { useAuth } from "@/components/context/auth-context";
 import Button from "@/components/ui/button";
-import { useRouter } from "expo-router";
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -11,8 +10,6 @@ const displayNames: Record<string, string> = {
 
 export default function ProfileScreen() {
   const { user, signOut } = useAuth();
-
-  const router = useRouter();
 
   if (!user) {
     return null;

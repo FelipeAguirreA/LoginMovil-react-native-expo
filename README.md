@@ -81,6 +81,18 @@ Abre el emulador o la app Expo Go para probar la aplicación.
 ## Video de Demostración
 https://www.youtube.com/watch?v=LCiIZXnFatA 
 
+## Lo que Aprendimos
+Durante el desarrollo de esta aplicación reforzamos y aplicamos varios conceptos clave de React Native y Expo:
+
+- **Estructuración de proyectos con Expo Router**, organizando pantallas, navegación entre vistas y manejo de rutas tipadas.
+- **Gestión de estado y autenticación** mediante un contexto global, persistiendo la sesión con AsyncStorage.
+- **Manejo de permisos en dispositivos móviles**, tanto para cámara como para ubicación, usando `expo-image-picker` y `expo-location`.
+- **Captura y almacenamiento de datos locales**, incluyendo fotos y coordenadas, y cómo vincularlos a un usuario específico.
+- **Componentización y diseño reutilizable**, separando UI en componentes más limpios y fáciles de mantener.
+- **Uso de Git y GitHub**, trabajando con forks, ramas, commits descriptivos y pull requests colaborativos.
+
+En conjunto, la app nos permitió integrar autenticación, multimedia, ubicación y persistencia local dentro de un flujo completo y funcional.
+
 ## Notas
 
 - Al ejecutar `npm run lint` se validan las reglas recomendadas por Expo.

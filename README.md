@@ -1,6 +1,20 @@
 ﻿# App de evaluación (React Native, Expo + TypeScript)
 
-Aplicación pequeña que combina un login ligero con una lista de tareas asociada a cada usuario. Las tareas requieren título, foto y ubicación, y se guardan localmente para que se muestren únicamente al usuario que las creó.
+Aplicación móvil creada con React Native. Combina un sistema de login simple con una biblioteca personal de libros, permitiendo agregar, visualizar y gestionar libros almacenados localmente. Incluye uso de cámara, ubicación y persistencia con AsyncStorage.
+
+## Características principales
+
+- **Login validado** para dos usuarios (`user1@example.com`, `user2@example.com`) con contraseña `1234`.
+- **Persistencia de sesión** usando `AsyncStorage`.
+- **Biblioteca personal**: cada usuario ve sólo sus propios libros.
+- **Agregar libros**:
+  - Título del libro
+  - Foto (con `expo-image-picker`)
+  - Ubicación actual (con `expo-location`)
+- **Gestión de elementos**:
+  - Marcar como leído / no leído
+  - Eliminar libro
+- **Cierre de sesión** con limpieza controlada del estado.
 
 ## Requisitos
 
@@ -51,6 +65,16 @@ Abre el emulador o la app Expo Go para probar la aplicación.
 - `@react-native-async-storage/async-storage` — Persistencia local de tareas y sesión.
 - `expo-image-picker` — Selección de fotos desde la galería.
 - `expo-location` — Captura las coordenadas al crear una tarea.
+
+## Capturas de Pantalla
+![Pantalla de Login](./assets/readme/login.jpg)
+![Vista de Perfil](./assets/readme/perfil.jpg)
+![Biblioteca](./assets/readme/biblioteca.jpg)
+![Agregar Libro](./assets/readme/agregar.jpg)
+
+
+## Video de Demostración
+https://www.youtube.com/watch?v=LCiIZXnFatA 
 
 ## Notas
 

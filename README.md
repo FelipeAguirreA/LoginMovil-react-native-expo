@@ -1,6 +1,20 @@
 ﻿# App de evaluación (React Native, Expo + TypeScript)
 
-Aplicación pequeña que combina un login ligero con una lista de tareas asociada a cada usuario. Las tareas requieren título, foto y ubicación, y se guardan localmente para que se muestren únicamente al usuario que las creó.
+Aplicación móvil creada con React Native. Combina un sistema de login simple con una biblioteca personal de libros, permitiendo agregar, visualizar y gestionar libros almacenados localmente. Incluye uso de cámara, ubicación y persistencia con AsyncStorage.
+
+## Características principales
+
+- **Login validado** para dos usuarios (`user1@example.com`, `user2@example.com`) con contraseña `1234`.
+- **Persistencia de sesión** usando `AsyncStorage`.
+- **Biblioteca personal**: cada usuario ve sólo sus propios libros.
+- **Agregar libros**:
+  - Título del libro
+  - Foto (con `expo-image-picker`)
+  - Ubicación actual (con `expo-location`)
+- **Gestión de elementos**:
+  - Marcar como leído / no leído
+  - Eliminar libro
+- **Cierre de sesión** con limpieza controlada del estado.
 
 ## Requisitos
 
@@ -51,6 +65,33 @@ Abre el emulador o la app Expo Go para probar la aplicación.
 - `@react-native-async-storage/async-storage` — Persistencia local de tareas y sesión.
 - `expo-image-picker` — Selección de fotos desde la galería.
 - `expo-location` — Captura las coordenadas al crear una tarea.
+
+## Capturas de Pantalla
+<p align="center">
+  <img src="./assets/readme/login.jpg" width="220" />
+  <img src="./assets/readme/perfil.jpg" width="220" />
+</p>
+
+<p align="center">
+  <img src="./assets/readme/biblioteca.jpg" width="220" />
+  <img src="./assets/readme/agregar.jpg" width="220" />
+</p>
+
+
+## Video de Demostración
+https://www.youtube.com/watch?v=LCiIZXnFatA 
+
+## Lo que Aprendimos
+Durante el desarrollo de esta aplicación reforzamos y aplicamos varios conceptos clave de React Native y Expo:
+
+- **Estructuración de proyectos con Expo Router**, organizando pantallas, navegación entre vistas y manejo de rutas tipadas.
+- **Gestión de estado y autenticación** mediante un contexto global, persistiendo la sesión con AsyncStorage.
+- **Manejo de permisos en dispositivos móviles**, tanto para cámara como para ubicación, usando `expo-image-picker` y `expo-location`.
+- **Captura y almacenamiento de datos locales**, incluyendo fotos y coordenadas, y cómo vincularlos a un usuario específico.
+- **Componentización y diseño reutilizable**, separando UI en componentes más limpios y fáciles de mantener.
+- **Uso de Git y GitHub**, trabajando con forks, ramas, commits descriptivos y pull requests colaborativos.
+
+En conjunto, la app nos permitió integrar autenticación, multimedia, ubicación y persistencia local dentro de un flujo completo y funcional.
 
 ## Notas
 

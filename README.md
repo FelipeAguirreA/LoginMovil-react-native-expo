@@ -67,10 +67,15 @@ Abre el emulador o la app Expo Go para probar la aplicación.
 - `expo-location` — Captura las coordenadas al crear una tarea.
 
 ## Capturas de Pantalla
-![Pantalla de Login](./assets/readme/login.jpg)
-![Vista de Perfil](./assets/readme/perfil.jpg)
-![Biblioteca](./assets/readme/biblioteca.jpg)
-![Agregar Libro](./assets/readme/agregar.jpg)
+<p align="center">
+  <img src="./assets/readme/login.jpg" width="220" />
+  <img src="./assets/readme/perfil.jpg" width="220" />
+</p>
+
+<p align="center">
+  <img src="./assets/readme/biblioteca.jpg" width="220" />
+  <img src="./assets/readme/agregar.jpg" width="220" />
+</p>
 
 
 ## Video de Demostración

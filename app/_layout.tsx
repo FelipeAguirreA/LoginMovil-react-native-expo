@@ -1,21 +1,25 @@
-import { Stack, usePathname, useRouter } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import React, { useEffect } from "react";
 import { AuthProvider, useAuth } from "../components/context/auth-context";
 
 function RootLayoutNav() {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const router = useRouter();
-  const pathname = usePathname() ?? "/";
+
 
   useEffect(() => {
-    const isOnLogin = pathname === "/login" || pathname === "/";
+    if (loading) return;
 
-    if (!user && !isOnLogin) {
+    if (!user) {
       router.replace("/login");
-    } else if (user && isOnLogin) {
+    } else {
       router.replace("/(tabs)");
     }
-  }, [user, pathname, router]);
+  }, [user, loading, router]);
+
+  if (loading) {
+    return null;
+  }
 
   return (
     <Stack screenOptions={{ headerShown: false }}>
